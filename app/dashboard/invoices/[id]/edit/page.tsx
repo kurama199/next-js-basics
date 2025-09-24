@@ -1,5 +1,5 @@
 import { fetchInvoiceById, sql } from "@/app/lib/data";
-import { CustomerField, InvoiceForm } from "@/app/lib/definitions";
+import { CustomerField } from "@/app/lib/definitions";
 import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 import EditInvoiceForm from "@/app/ui/invoices/edit-form";
 import { notFound } from "next/navigation";

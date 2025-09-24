@@ -78,9 +78,6 @@ export async function editInvoice(id: string, formData: FormData) {
     `;
   } catch (error) {
     console.error(error);
-    return {
-      message: "Database error: Failed to Edit invoice",
-    };
   }
   revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
@@ -94,9 +91,6 @@ export async function deleteInvoice(id: string) {
     `;
   } catch (error) {
     console.error(error);
-    return {
-      message: "Database error: Failed to Edit invoice",
-    };
   }
   revalidatePath("/dashboard/invoices");
 }

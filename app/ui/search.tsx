@@ -8,26 +8,27 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const pathName = usePathname();
   const { replace } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  let timeoutid: ReturnType<typeof setTimeout> | undefined;
 
   useEffect(() => {
-    timeoutid = setTimeout(() => {
-      console.log("o/p searching for..... ", searchTerm);
-      clearTimeout(timeoutid);
-      const params = new URLSearchParams(searchParams);
-      if (searchTerm) {
-        params.set("query", searchTerm);
-      } else {
-        params.delete("query");
-      }
-      replace(`${pathName}?${params.toString()}`);
-    }, 300);
+    const timeoutid: ReturnType<typeof setTimeout> | undefined = setTimeout(
+      () => {
+        clearTimeout(timeoutid);
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) {
+          params.set("query", searchTerm);
+        } else {
+          params.delete("query");
+        }
+        replace(`${pathName}?${params.toString()}`);
+      },
+      300
+    );
     return () => {
       if (timeoutid) {
         clearTimeout(timeoutid);
       }
     };
-  }, [searchTerm]);
+  }, [searchTerm, pathName, replace, searchParams]);
 
   return (
     <div className="relative flex flex-1 flex-shrink-0">
